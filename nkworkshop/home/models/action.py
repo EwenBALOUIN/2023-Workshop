@@ -20,3 +20,4 @@ class Action(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     scheduled_at = models.DateTimeField()
     done_at = models.DateTimeField(null=True, blank=True)
+    customer = models.OneToOneField('Customer', on_delete=models.PROTECT, null=True, blank=True)

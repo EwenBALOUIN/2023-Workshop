@@ -7,34 +7,37 @@ from django.urls import reverse
 from django.contrib import messages
 import logging
 import csv
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
+
+
+from django.shortcuts import redirect
 
 from .models.customer import Customer
 
-def home(request):
-    return render(request, 'home.html')
-
 
 def parse_file_from_csv(uploaded_file):
-    file_data = uploaded_file.read().decode("utf-8")		
-    lines = file_data.split("\n")
-    #loop over the lines and save them in db. If error , store as string and then display
-    for line in lines:						
-        fields = line.split(",")
-        print(fields)
-        data_dict = {}
-        data_dict["first_name"] = fields[0]
-        data_dict["name"] = fields[1]
-        data_dict["email"] = fields[2]
-        data_dict["mobile"] = fields[3]
-        data_dict["address"] = fields[4]
-        try:
-            print(data_dict)
-            Customer.objects.create(**data_dict)
-        except Exception as e:
-            logging.getLogger("error_logger").error(repr(e))					
+        file_data = uploaded_file.read().decode("utf-8")
+        lines = file_data.split("\n")
+        #loop over the lines and save them in db. If error , store as string and then display
+        for line in lines:
+            fields = line.split(",")
+            print(fields)
+            data_dict = {}
+            data_dict["first_name"] = fields[0]
+            data_dict["name"] = fields[1]
+            data_dict["email"] = fields[2]
+            data_dict["mobile"] = fields[3]
+            data_dict["address"] = fields[4]
+            try:
+                print(data_dict)
+                Customer.objects.create(**data_dict)
+            except Exception as e:
+                logging.getLogger("error_logger").error(repr(e))
             pass
 
 
+@login_required
 def upload(request):
     context = {}
     if request.method == 'POST':
@@ -49,6 +52,8 @@ def upload(request):
         parse_file_from_csv(uploaded_file)
     return render(request, 'import_contact.html', context)
 
+
+@login_required
 def download(request):
     # export all Customer to csv
     response = HttpResponse(content_type='text/csv')
@@ -60,3 +65,18 @@ def download(request):
     for customer in customers:
         writer.writerow([customer.first_name, customer.name, customer.email, customer.mobile, customer.address, customer.status])
     return response
+
+
+
+def logincrm(request):
+    if request.user.is_authenticated:
+        return redirect('/')
+    else:
+        if request.POST:
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('/')
+        return render(request, 'login.html')

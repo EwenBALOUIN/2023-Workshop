@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #installed apps
-    'home.apps.HomeConfig',
+    'crm.apps.CrmConfig',
 ]
 
 MIDDLEWARE = [
@@ -53,7 +53,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'nkworkshop.urls'
-LOGIN_URL = 'login'
+LOGIN_URL = 'login/'
+REDIRECT_LOGIN_URL = ''
 
 TEMPLATES = [
     {

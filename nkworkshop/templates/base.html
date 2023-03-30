@@ -203,6 +203,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{% url 'upload' %}" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    Import contact
+                </p>
+                </a>
+            </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -287,6 +295,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
                 </div>
+                {% block content %}
+                {% endblock %}
             </div>
             <!-- /.col-md-6 -->
             </div>

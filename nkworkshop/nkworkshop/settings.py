@@ -53,7 +53,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'nkworkshop.urls'
-LOGIN_URL = 'login'
+LOGIN_URL = 'login/'
+REDIRECT_LOGIN_URL = ''
 
 TEMPLATES = [
     {

@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #installed apps
-    'home.apps.HomeConfig',
+    'crm.apps.CrmConfig',
 ]
 
 MIDDLEWARE = [

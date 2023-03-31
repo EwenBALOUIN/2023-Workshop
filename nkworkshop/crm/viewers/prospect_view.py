@@ -10,16 +10,16 @@ def prospect_list(request):
     prospects = Customer.objects.filter(Q(status='prospect') | Q(status='prospect mort'))
     return render(request, 'prospect/prospect_list.html', {'prospects': prospects})
 
-def prospect_detail(request, pk):
-    prospect = get_object_or_404(Customer, pk=pk)
-    return render(request, 'prospect/prospect_detail.html', {'prospect': prospect})
+# def prospect_detail(request, pk):
+#     prospect = get_object_or_404(Customer, pk=pk)
+#     return render(request, 'prospect/prospect_detail.html', {'prospect': prospect})
 
 def prospect_create(request):
     if request.method == 'POST':
         form = CustomerForm(request.POST)
         if form.is_valid():
             prospect = form.save()
-            return redirect('prospect_detail', pk=prospect.pk)
+            return redirect('prospect_list')
     else:
         form = CustomerForm()
     return render(request, 'prospect/prospect_form.html', {'form': form})
@@ -30,7 +30,7 @@ def prospect_edit(request, pk):
         form = CustomerForm(request.POST, instance=prospect)
         if form.is_valid():
             prospect = form.save()
-            return redirect('prospect_detail', pk=prospect.pk)
+            return redirect('prospect_list')
     else:
         form = CustomerForm(instance=prospect)
     return render(request, 'prospect/prospect_form.html', {'form': form})

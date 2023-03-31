@@ -11,16 +11,16 @@ def lead_list(request):
     leads = Customer.objects.filter(Q(status='lead') | Q(status='lead mort'))
     return render(request, 'lead/lead_list.html', {'leads': leads})
 
-def lead_detail(request, pk):
-    lead = get_object_or_404(Customer, pk=pk)
-    return render(request, 'lead/lead_detail.html', {'lead': lead})
+# def lead_detail(request, pk):
+#     lead = get_object_or_404(Customer, pk=pk)
+#     return render(request, 'lead/lead_detail.html', {'lead': lead})
 
 def lead_create(request):
     if request.method == 'POST':
         form = CustomerForm(request.POST)
         if form.is_valid():
             lead = form.save()
-            return redirect('lead_detail', pk=lead.pk)
+            return redirect('lead_list')
     else:
         form = CustomerForm()
     return render(request, 'lead/lead_form.html', {'form': form})
@@ -31,7 +31,7 @@ def lead_edit(request, pk):
         form = CustomerForm(request.POST, instance=lead)
         if form.is_valid():
             lead = form.save()
-            return redirect('lead_detail', pk=lead.pk)
+            return redirect('lead_list')
     else:
         form = CustomerForm(instance=lead)
     return render(request, 'lead/lead_form.html', {'form': form})

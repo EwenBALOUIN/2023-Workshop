@@ -2,12 +2,32 @@
 
 {% block content %}
     <h1>customer List</h1>
-    <ul>
+    <table class="table table-striped table-bordered table-hover">
+        <th>
+            <td>ID</td>
+            <td>first name</td>
+            <td>name</td>
+            <td>email</td>
+            <td>mobile</td>
+            <td>address</td>
+        </th>
+        <tbody>
         {% for customer in customers %}
-            <li><a href="{% url 'customer_detail' customer.pk %}">{{ customer.name }}</a></li>
+            <tr>
+                <td></td>
+                <td>{{ customer.pk }}</td>
+                <td>{{ customer.first_name }}</td>
+                <td>{{ customer.name }}</td>
+                <td>{{ customer.email }}</td>
+                <td>{{ customer.mobile }}</td>
+                <td>{{ customer.address }}</td>
+                <td><a href="{% url 'customer_edit' customer.pk %}">Edit</a></td>
+                <td><a href="{% url 'customer_delete' customer.pk %}">Delete</a></td>
+            </tr>
         {% empty %}
-            <li>No customers yet.</li>
+        <tr><td>No customers yet.</tr></tr>
         {% endfor %}
-    </ul>
+        </tbody>
+    </table>
     <a href="{% url 'customer_create' %}">Create new customer</a>
 {% endblock %}

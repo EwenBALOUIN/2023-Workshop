@@ -9,16 +9,16 @@ def action_list(request):
     actions = Action.objects.all()
     return render(request, 'action/action_list.html', {'actions': actions})
 
-def action_detail(request, pk):
-    action = get_object_or_404(Action, pk=pk)
-    return render(request, 'action/action_detail.html', {'action': action})
+# def action_detail(request, pk):
+#     action = get_object_or_404(Action, pk=pk)
+#     return render(request, 'action/action_detail.html', {'action': action})
 
 def action_create(request):
     if request.method == 'POST':
         form = ActionForm(request.POST)
         if form.is_valid():
-            action = form.save()
-            return redirect('action_detail', pk=action.pk)
+            form.save()
+            return redirect('action_list')
     else:
         form = ActionForm()
     return render(request, 'action/action_form.html', {'form': form})
@@ -29,7 +29,7 @@ def action_edit(request, pk):
         form = ActionForm(request.POST, instance=action)
         if form.is_valid():
             action = form.save()
-            return redirect('action_detail', pk=action.pk)
+            return redirect('action_list')
     else:
         form = ActionForm(instance=action)
     return render(request, 'action/action_form.html', {'form': form})

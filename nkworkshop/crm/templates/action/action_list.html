@@ -2,12 +2,36 @@
 
 {% block content %}
     <h1>action List</h1>
-    <ul>
+    <table class="table table-striped table-bordered table-hover">
+        <th>
+            <td>ID</td>
+            <td>action_type</td>
+            <td>customer</td>
+            <td>description</td>
+            <td>created_at</td>
+            <td>scheduled_at</td>
+            <td>done_at</td>
+            <td></td>
+            <td></td>
+        </th>
+        <tbody>
         {% for action in actions %}
-            <li><a href="{% url 'action_detail' action.pk %}">{{ action.action_type }}</a></li>
+            <tr>
+                <td></td>
+                <td>{{ action.pk }}</td>
+                <td>{{ action.action_type }}</td>
+                <td>{{ action.customer }}</td>
+                <td>{{ action.description }}</td>
+                <td>{{ action.created_at }}</td>
+                <td>{{ action.scheduled_at }}</td>
+                <td>{{ action.done_at }}</td>
+                <td><a href="{% url 'action_edit' action.pk %}">Edit</a></td>
+                <td><a href="{% url 'action_delete' action.pk %}">Delete</a></td>
+            </tr>
         {% empty %}
-            <li>No actions yet.</li>
+            <tr><td>No actions yet.</td></tr>
         {% endfor %}
-    </ul>
+        </tbody>
+    </table>
     <a href="{% url 'action_create' %}">Create new action</a>
 {% endblock %}

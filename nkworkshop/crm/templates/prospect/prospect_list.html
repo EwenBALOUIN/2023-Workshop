@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Prospect List</h1>
+    <ul>
+        {% for prospect in prospects %}
+            <li><a href="{% url 'prospect_detail' prospect.pk %}">{{ prospect.name }}</a></li>
+        {% empty %}
+            <li>No prospects yet.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'prospect_create' %}">Create new prospect</a>
+{% endblock %}

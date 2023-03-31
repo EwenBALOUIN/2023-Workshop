@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>lead List</h1>
+    <ul>
+        {% for lead in leads %}
+            <li><a href="{% url 'lead_detail' lead.pk %}">{{ lead.name }}</a></li>
+        {% empty %}
+            <li>No leads yet.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'lead_create' %}">Create new lead</a>
+{% endblock %}

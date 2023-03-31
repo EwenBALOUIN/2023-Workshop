@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>action List</h1>
+    <ul>
+        {% for action in actions %}
+            <li><a href="{% url 'action_detail' action.pk %}">{{ action.action_type }}</a></li>
+        {% empty %}
+            <li>No actions yet.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'action_create' %}">Create new action</a>
+{% endblock %}

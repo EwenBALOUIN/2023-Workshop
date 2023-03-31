@@ -50,11 +50,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # add BlockBackMiddleware   
+    'crm.middlewares.BlockBackMiddleware',
 ]
 
 ROOT_URLCONF = 'nkworkshop.urls'
 LOGIN_URL = 'login/'
 REDIRECT_LOGIN_URL = ''
+CACHE_MIDDLEWARE_SECONDS = 0
 
 TEMPLATES = [
     {

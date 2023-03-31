@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ customer.name }}</h1>
+    <p>{{ customer.first_name }}</p>
+    <a href="{% url 'customer_edit' customer.pk %}">Edit</a>
+    <a href="{% url 'customer_delete' customer.pk %}">Delete</a>
+    {% endblock %}

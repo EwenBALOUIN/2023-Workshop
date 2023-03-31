@@ -2,47 +2,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from ..forms import CustomerForm
 from ..models import Customer
-
-# Create your views here.  
-# def emp(request):  
-#     if request.method == "POST":  
-#         form = CustomerForm(request.POST)  
-#         if form.is_valid():  
-#             try:  
-#                 form.save()  
-#                 return redirect('/show')  
-#             except:  
-#                 pass  
-#     else:  
-#         form = CustomerForm()  
-#     return render(request,'index.html',{'form':form})  
-
-# def show(request):  
-#     customers = Customer.objects.all()
-#     return render(request,"show.html",{'customers':customers})  
-
-# def edit(request, id):  
-#     customer = Customer.objects.get(id=id)  
-#     return render(request,'edit.html', {'customer':customer})  
-
-# def update(request, id):  
-#     customer = Customer.objects.get(id=id)  
-#     form = CustomerForm(request.POST, instance = customer)
-#     if form.is_valid():
-#         form.save()
-#         return redirect("/show")
-#     return render(request, 'edit.html', {'customer': customer})
-
-
-# def destroy(request, id):  
-#     customer = Customer.objects.get(id=id)  
-#     customer.delete()  
-#     return redirect("/show")  
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 @login_required
 def customer_list(request):
-    customers = Customer.objects.filter(status='client')
+    customers = Customer.objects.filter(Q(status='client') | Q(status='aucun'))
     return render(request, 'customer/customer_list.html', {'customers': customers})
 
 def customer_detail(request, pk):

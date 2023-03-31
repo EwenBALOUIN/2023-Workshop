@@ -3,10 +3,11 @@ from django.http import HttpResponse
 from ..forms import CustomerForm
 from ..models import Customer
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 @login_required
 def prospect_list(request):
-    prospects = Customer.objects.filter(status='prospect')
+    prospects = Customer.objects.filter(Q(status='prospect') | Q(status='prospect mort'))
     return render(request, 'prospect/prospect_list.html', {'prospects': prospects})
 
 def prospect_detail(request, pk):

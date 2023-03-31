@@ -4,10 +4,11 @@ from ..forms import CustomerForm
 from ..models import Customer
 
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 @login_required
 def lead_list(request):
-    leads = Customer.objects.filter(status='lead')
+    leads = Customer.objects.filter(Q(status='lead') | Q(status='lead mort'))
     return render(request, 'lead/lead_list.html', {'leads': leads})
 
 def lead_detail(request, pk):

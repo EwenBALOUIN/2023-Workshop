@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ action.action_type }}</h1>
+    <p>{{ action.customer }}</p>
+    <a href="{% url 'action_edit' action.pk %}">Edit</a>
+    <a href="{% url 'action_delete' action.pk %}">Delete</a>
+    {% endblock %}

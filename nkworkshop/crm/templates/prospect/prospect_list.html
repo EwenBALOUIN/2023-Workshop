@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Prospect List</h1>
+    <table class="table table-striped table-bordered table-hover">
+        <th>
+            <td>ID</td>
+            <td>first name</td>
+            <td>name</td>
+            <td>email</td>
+            <td>mobile</td>
+            <td>address</td>
+        </th>
+        <tbody>
+        {% for prospect in prospects %}
+            <tr>
+                <td></td>
+                <td>{{ prospect.pk }}</td>
+                <td>{{ prospect.first_name }}</td>
+                <td>{{ prospect.name }}</td>
+                <td>{{ prospect.email }}</td>
+                <td>{{ prospect.mobile }}</td>
+                <td>{{ prospect.address }}</td>
+                <td><a href="{% url 'prospect_edit' prospect.pk %}">Edit</a></td>
+                <td><a href="{% url 'prospect_delete' prospect.pk %}">Delete</a></td>
+        {% empty %}
+            <tr><td>No prospects yet.</td></tr>
+        {% endfor %}
+    
+    </table>
+    <a href="{% url 'prospect_create' %}">Create new prospect</a>
+{% endblock %}

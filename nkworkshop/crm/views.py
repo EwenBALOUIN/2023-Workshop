@@ -1,6 +1,4 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
-from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -8,13 +6,13 @@ from django.contrib import messages
 import logging
 import csv
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.views.decorators.cache import cache_control
 
 
 from django.shortcuts import redirect
 
 from .models.customer import Customer
-
 
 def parse_file_from_csv(uploaded_file):
         file_data = uploaded_file.read().decode("utf-8")
@@ -22,7 +20,6 @@ def parse_file_from_csv(uploaded_file):
         #loop over the lines and save them in db. If error , store as string and then display
         for line in lines:
             fields = line.split(",")
-            print(fields)
             data_dict = {}
             data_dict["first_name"] = fields[0]
             data_dict["name"] = fields[1]
@@ -30,7 +27,6 @@ def parse_file_from_csv(uploaded_file):
             data_dict["mobile"] = fields[3]
             data_dict["address"] = fields[4]
             try:
-                print(data_dict)
                 Customer.objects.create(**data_dict)
             except Exception as e:
                 logging.getLogger("error_logger").error(repr(e))
@@ -38,6 +34,7 @@ def parse_file_from_csv(uploaded_file):
 
 
 @login_required
+@cache_control(no_cache=True, must_revalidate=True,no_store=True)
 def upload(request):
     context = {}
     if request.method == 'POST':
@@ -54,6 +51,7 @@ def upload(request):
 
 
 @login_required
+@cache_control(no_cache=True, must_revalidate=True,no_store=True)
 def download(request):
     # export all Customer to csv
     response = HttpResponse(content_type='text/csv')
@@ -67,7 +65,7 @@ def download(request):
     return response
 
 
-
+@cache_control(no_cache=True, must_revalidate=True,no_store=True)
 def logincrm(request):
     if request.user.is_authenticated:
         return redirect('/')
@@ -80,3 +78,8 @@ def logincrm(request):
                 login(request, user)
                 return redirect('/')
         return render(request, 'login.html')
+
+@cache_control(no_cache=True, must_revalidate=True,no_store=True)
+def logoutcrm(request):
+    logout(request)
+    return redirect('/')

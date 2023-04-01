@@ -218,6 +218,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{% url 'company_list' %}" class="nav-link">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                    Compagnies
+                </p>
+                </a>
+            </li>
             {% if request.user.is_superuser %}
             <li class="nav-item">
                 <!-- go admin link -->

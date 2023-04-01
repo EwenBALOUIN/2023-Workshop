@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ user.name }}</h1>
+    <p>{{ user.first_name }}</p>
+    <a href="{% url 'user_edit' user.pk %}">Edit</a>
+    <a href="{% url 'user_delete' user.pk %}">Delete</a>
+    {% endblock %}

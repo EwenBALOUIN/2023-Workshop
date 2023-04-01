@@ -7,8 +7,9 @@ from .routes import customer_route as customer_route
 from .routes import lead_route as lead_route
 from .routes import prospect_route as prospect_route
 from .routes import action_route as action_route
+from .routes import company_route as company_route
+from .routes import user_route as user_route
 from .viewers import dashboard_view
-
 
 
 urlpatterns = [
@@ -21,5 +22,7 @@ urlpatterns = [
     path('', include(customer_route)),
     path('', include(lead_route)),
     path('', include(prospect_route)),
-    path('', include(action_route))
+    path('', include(action_route)),
+    path('', include(company_route)),
+    path('', include(user_route))
 ]

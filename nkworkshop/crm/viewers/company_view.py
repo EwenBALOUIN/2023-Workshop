@@ -28,7 +28,9 @@ def company_edit(request, pk):
     if request.method == 'POST':
         form = CompanyForm(request.POST, instance=company)
         if form.is_valid():
-            company = form.save()
+            company = form.save(commit=False)
+            company.save()
+            form.save_m2m()
             return redirect('company_list')
     else:
         form = CompanyForm(instance=company)

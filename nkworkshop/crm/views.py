@@ -13,6 +13,7 @@ from django.views.decorators.cache import cache_control
 from django.shortcuts import redirect
 
 from .models.customer import Customer
+from .models.action import Action
 
 def parse_file_from_csv(uploaded_file):
         file_data = uploaded_file.read().decode("utf-8")
@@ -59,9 +60,14 @@ def download(request):
     customers = Customer.objects.all()
     response.write(u'\ufeff'.encode('utf8'))
     writer = csv.writer(response)
-    writer.writerow(['first_name', 'name', 'email', 'mobile', 'address', 'status'])
+    writer.writerow(['first_name', 'name', 'email', 'mobile', 'address', 'status', 'action_type', 'description'])
     for customer in customers:
-        writer.writerow([customer.first_name, customer.name, customer.email, customer.mobile, customer.address, customer.status])
+        action = Action.objects.filter(id=customer.pk)
+        action = action[0] if action else None
+        if action:
+            writer.writerow([customer.first_name, customer.name, customer.email, customer.mobile, customer.address, customer.status, action.action_type, action.description])
+        else:
+            writer.writerow([customer.first_name, customer.name, customer.email, customer.mobile, customer.address, customer.status, 'aucune action', 'aucune description'])
     return response
 
 

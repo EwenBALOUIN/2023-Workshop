@@ -26,6 +26,11 @@ class ActionForm(forms.ModelForm):
     class Meta:  
         model = Action
         fields = ('customer', 'action_type', 'description', 'scheduled_at', 'done_at')
+        widgets = {
+            'scheduled_at': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'done_at': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            
+        }
 
 class CompanyForm(forms.ModelForm):
     contacts = forms.ModelMultipleChoiceField(

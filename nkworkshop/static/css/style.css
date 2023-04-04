@@ -1,0 +1,31 @@
+:root {
+    /* Backgrounds Colors */
+  --main-background: #030C1B;
+  --nav-background: #171A3B;
+  --modal-background: #101536;
+
+  /* Main Colors */
+  --main-color-green: #29CC97;
+  --main-color-red: #FF4588;
+  --main-color-yellow: #FEC400;
+  --main-color-gray : #F0F1F7;
+
+  /* Text Colors */
+  --color-text-main: #FFFFFF;
+  --color-text-secondary: #BFBFBF;
+  --color-text-silver: #A7B7DD;
+  --color-text-dark-silver: #2A4178;
+  --main-color-blue-link: #3751FF;
+}
+
+#nk-authentification{
+    background-color: var(--main-background);
+    color: var(--color-text-main);
+    height: 100vh;
+}
+#nk-authentification button{
+    background-color: var(--main-color-yellow);
+    border-color: var(--main-color-yellow);
+    color: var(--color-text-dark-silver);
+    font-weight: bold;
+}

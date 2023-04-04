@@ -3,6 +3,28 @@
 {% block content %}
     <h1>{{ action.action_type }}</h1>
     <p>{{ action.customer }}</p>
-    <a href="{% url 'action_edit' action.pk %}">Edit</a>
-    <a href="{% url 'action_delete' action.pk %}">Delete</a>
+    <p>{{ action.description }}</p>
+    <p>{{ action.created_at }}</p>
+    <p>{{ action.scheduled_at }}</p>
+    <p>{{ action.done_at }}</p>
+    <table class="table table-striped table-bordered table-hover">
+        <th>
+            <td>user</td>
+            <td>content</td>
+            <td>created_at</td>
+        </th>
+        <tbody>
+        {% for message in messages %}
+            <tr>
+                <td></td>
+                <td>{{ message.user }}</td>
+                <td>{{ message.content }}</td>
+                <td>{{ message.created_at }}</td>
+            </tr>
+        {% empty %}
+            <tr><td>No message yet.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'message_create' %}?action_id={{ action.pk }}">Create new message</a>
     {% endblock %}

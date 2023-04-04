@@ -3,6 +3,7 @@ from django import forms
 from .models import Customer
 from .models import Action
 from .models import Company
+from .models import Message
 from django.contrib.auth.models import User
 
 class CustomerForm(forms.ModelForm):
@@ -55,3 +56,21 @@ class UserForm(forms.ModelForm):
         widgets = {
             'password': forms.TextInput(attrs={'readonly': 'readonly'}),
         }
+
+class MessageForm(forms.ModelForm):  
+    class Meta:
+        model = Message
+        fields = ('user', 'action', 'content')
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        action_id = kwargs.get('initial', {}).get('action_id', None)
+        if action_id:
+            action = Action.objects.filter(id=action_id).values_list('id', flat=True).first()
+            self.fields['action'].initial = action
+
+        user_id = kwargs.get('initial', {}).get('user_id', None)
+        if user_id:
+            user = User.objects.filter(id=user_id).values_list('id', flat=True).first()
+            self.fields['user'].initial = user

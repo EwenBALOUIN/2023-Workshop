@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <button onclick="window.history.back()">Retour</button>
+    <h1>{% if form.instance.pk %}Edit{% else %}Create{% endif %} message</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+{% endblock %}

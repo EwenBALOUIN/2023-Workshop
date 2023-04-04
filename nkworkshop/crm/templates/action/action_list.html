@@ -13,6 +13,7 @@
             <td>done_at</td>
             <td></td>
             <td></td>
+            <td></td>
         </th>
         <tbody>
         {% for action in actions %}
@@ -25,6 +26,7 @@
                 <td>{{ action.created_at }}</td>
                 <td>{{ action.scheduled_at }}</td>
                 <td>{{ action.done_at }}</td>
+                <td><a href="{% url 'action_detail' action.pk %}">Voir détails</a></td>
                 <td><a href="{% url 'action_edit' action.pk %}">Edit</a></td>
                 <td><a href="{% url 'action_delete' action.pk %}">Delete</a></td>
             </tr>

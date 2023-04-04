@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from ..forms import ActionForm
 from ..models import Action
 from ..models import Customer
+from ..models import Message
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -10,9 +11,10 @@ def action_list(request):
     actions = Action.objects.all().order_by('scheduled_at')
     return render(request, 'action/action_list.html', {'actions': actions})
 
-# def action_detail(request, pk):
-#     action = get_object_or_404(Action, pk=pk)
-#     return render(request, 'action/action_detail.html', {'action': action})
+def action_detail(request, pk):
+    action = get_object_or_404(Action, pk=pk)
+    messages = Message.objects.filter(action=action).order_by('-created_at')
+    return render(request, 'action/action_detail.html', {'action': action, 'messages': messages})
 
 def action_create(request):
     if request.GET.get('customer_id'):
@@ -25,7 +27,7 @@ def action_create(request):
             form.save()
             return redirect('action_list')
     else:
-        form = ActionForm()
+        form = ActionForm(initial={'customer': customer.pk})
     return render(request, 'action/action_form.html', {'form': form})
 
 def action_edit(request, pk):

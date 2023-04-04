@@ -13,7 +13,7 @@ class CustomerForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
+        # TODO: fix company field for creation/update
         if self.instance.pk:
             test = Company.objects.filter(contacts__pk=self.instance.pk)
             if test:
@@ -26,11 +26,15 @@ class ActionForm(forms.ModelForm):
     class Meta:  
         model = Action
         fields = ('customer', 'action_type', 'description', 'scheduled_at', 'done_at')
-        widgets = {
-            'scheduled_at': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
-            'done_at': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
-            
-        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance.pk:
+            self.fields['scheduled_at'].widget.attrs['class'] = 'datetimeinput'
+            self.fields['scheduled_at'].initial = self.instance.scheduled_at.strftime('%Y-%m-%dT%H:%M')
+            self.fields['done_at'].widget.attrs['class'] = 'datetimepicker'
+            self.fields['done_at'].initial = self.instance.done_at.strftime('%Y-%m-%dT%H:%M')
+
 
 class CompanyForm(forms.ModelForm):
     contacts = forms.ModelMultipleChoiceField(

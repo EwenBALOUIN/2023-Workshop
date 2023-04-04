@@ -27,6 +27,7 @@
                 {% else %}
                     <td>B2C</td>
                 {% endif %}
+                <td><a href="{% url 'prospect_detail' prospect.pk %}">Voir détails</a></td>
                 <td><a href="{% url 'prospect_edit' prospect.pk %}">Edit</a></td>
                 <td><a href="{% url 'prospect_delete' prospect.pk %}">Delete</a></td>
         {% empty %}

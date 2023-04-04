@@ -2,25 +2,28 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from ..forms import CustomerForm
 from ..models import Customer
+from ..models import Action
 
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.urls import reverse
 
 @login_required
 def lead_list(request):
     leads = Customer.objects.filter(Q(status='lead') | Q(status='lead mort'))
     return render(request, 'lead/lead_list.html', {'leads': leads})
 
-# def lead_detail(request, pk):
-#     lead = get_object_or_404(Customer, pk=pk)
-#     return render(request, 'lead/lead_detail.html', {'lead': lead})
+def lead_detail(request, pk):
+    lead = get_object_or_404(Customer, pk=pk)
+    actions = Action.objects.filter(customer=lead).order_by('scheduled_at')
+    return render(request, 'lead/lead_detail.html', {'lead': lead, 'actions': actions})
 
 def lead_create(request):
     if request.method == 'POST':
         form = CustomerForm(request.POST)
         if form.is_valid():
             lead = form.save()
-            return redirect('lead_list')
+            return redirect(request.META.get('HTTP_REFERER', reverse('index')))
     else:
         form = CustomerForm()
     return render(request, 'lead/lead_form.html', {'form': form})

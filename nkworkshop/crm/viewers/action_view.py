@@ -2,11 +2,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from ..forms import ActionForm
 from ..models import Action
+from ..models import Customer
 from django.contrib.auth.decorators import login_required
 
 @login_required
 def action_list(request):
-    actions = Action.objects.all()
+    actions = Action.objects.all().order_by('scheduled_at')
     return render(request, 'action/action_list.html', {'actions': actions})
 
 # def action_detail(request, pk):
@@ -14,6 +15,10 @@ def action_list(request):
 #     return render(request, 'action/action_detail.html', {'action': action})
 
 def action_create(request):
+    if request.GET.get('customer_id'):
+        customer_id = request.GET.get('customer_id', None)
+        customer = Customer.objects.get(pk=customer_id)
+        form = ActionForm(initial={'customer': customer.pk})
     if request.method == 'POST':
         form = ActionForm(request.POST)
         if form.is_valid():

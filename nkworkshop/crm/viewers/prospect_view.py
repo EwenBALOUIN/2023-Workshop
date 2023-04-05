@@ -22,7 +22,7 @@ def prospect_create(request):
         form = CustomerForm(request.POST)
         if form.is_valid():
             prospect = form.save()
-            return redirect(request.META.get('HTTP_REFERER', reverse('index')))
+            return redirect('prospect_list')
     else:
         form = CustomerForm()
     return render(request, 'prospect/prospect_form.html', {'form': form})
@@ -33,7 +33,7 @@ def prospect_edit(request, pk):
         form = CustomerForm(request.POST, instance=prospect)
         if form.is_valid():
             prospect = form.save()
-            return redirect(request.META.get('HTTP_REFERER', reverse('index')))
+            return redirect('prospect_list')
     else:
         form = CustomerForm(instance=prospect)
     return render(request, 'prospect/prospect_form.html', {'form': form})

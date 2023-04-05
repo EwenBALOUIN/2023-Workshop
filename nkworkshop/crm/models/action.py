@@ -8,6 +8,7 @@ class Action(models.Model):
         EMAIL = 'Email',
         MEETING = 'Rendez-vous',
         VISIT = 'Visite',
+        SALE = 'Vente',
         OTHER = 'Autre',
     
     action_type = models.CharField(

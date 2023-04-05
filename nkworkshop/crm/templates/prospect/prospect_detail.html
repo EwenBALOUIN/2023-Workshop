@@ -2,7 +2,9 @@
 {% load my_filters %}
 
 {% block content %}
-    <button onclick="window.history.back()">Retour</button>
+    <a href="{% url 'prospect_list' %}">
+        <button>Retour</button>
+    </a>
     <h1>Prospect Detail</h1>
     <!-- customer detail beautiful design -->
 
@@ -51,7 +53,7 @@
             {% endfor %}
             </tbody>
         </table>
-        <a href="{% url 'action_create' %}?customer_id={{ prospect.pk }}">Create new action</a>
+        <a href="{% url 'action_create' %}?customer_id={{ prospect.pk }}&from=prospect">Create new action</a>
     </div>
     
 {% endblock %}

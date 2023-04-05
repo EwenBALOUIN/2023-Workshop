@@ -23,7 +23,7 @@ def lead_create(request):
         form = CustomerForm(request.POST)
         if form.is_valid():
             lead = form.save()
-            return redirect(request.META.get('HTTP_REFERER', reverse('index')))
+            return redirect('lead_list')
     else:
         form = CustomerForm()
     return render(request, 'lead/lead_form.html', {'form': form})

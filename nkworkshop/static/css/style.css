@@ -64,3 +64,39 @@ b.color{color: var(--main-color-red)}
     font-size: large;
     text-align: center;
 }
+
+aside{
+    background-color: var(--nav-background);
+    color: var(--color-text-secondary);
+}
+aside .brand-link{
+    color: var(--color-text-main);
+    margin: 1em 0;
+}
+.sidebar-collapse aside .nav-item{
+    width: calc(100%);
+    margin: 0;
+    padding: 0;
+}
+aside .nav-item{
+    width: calc(100% - 2em);
+    margin: 0.75em 1em;
+    padding: 0 1em;
+    border-radius: 5px;
+}
+aside .nav-item:hover{background-color: var(--main-color-yellow);}
+aside .nav-item{color: var(--color-text-silver)!important;}
+aside .nav-item:hover>a{color: var(--color-text-dark-silver)!important;}
+
+.sidebar-collapse aside .help-box{display: none;}
+aside .footer{
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    text-decoration: underline;
+}
+aside .help-box{
+    padding: 2.5em 1em;
+    font-size: small;
+    color: var(--color-text-secondary);
+}

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load my_filters %}
 {% block content %}
     <h1>lead List</h1>
     <table class="table table-striped table-bordered table-hover">
@@ -10,6 +10,7 @@
             <td>email</td>
             <td>mobile</td>
             <td>address</td>
+            <td>cible</td>
         </th>
         <tbody>
         {% for lead in leads %}
@@ -21,6 +22,12 @@
                 <td>{{ lead.email }}</td>
                 <td>{{ lead.mobile }}</td>
                 <td>{{ lead.address }}</td>
+                {% if lead|has_company %}
+                    <td>B2B</td>
+                {% else %}
+                    <td>B2C</td>
+                {% endif %}
+                <td><a href="{% url 'lead_detail' lead.pk %}">Voir détails</a></td>
                 <td><a href="{% url 'lead_edit' lead.pk %}">Edit</a></td>
                 <td><a href="{% url 'lead_delete' lead.pk %}">Delete</a></td>
             </tr>

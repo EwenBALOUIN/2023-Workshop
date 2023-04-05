@@ -21,3 +21,6 @@ class Action(models.Model):
     scheduled_at = models.DateTimeField()
     done_at = models.DateTimeField(null=True, blank=True)
     customer = models.ForeignKey('Customer', on_delete=models.PROTECT, null=True, blank=True, related_name='action')
+
+    def __str__(self):
+        return self.action_type + ': ' + self.description

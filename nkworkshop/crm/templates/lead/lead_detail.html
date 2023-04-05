@@ -2,7 +2,9 @@
 {% load my_filters %}
 
 {% block content %}
-    <button onclick="window.history.back()">Retour</button>
+<a href="{% url 'lead_list' %}">
+    <button>Retour</button>
+</a>
     <h1>Lead Detail</h1>
     <!-- lead detail beautiful design -->
 

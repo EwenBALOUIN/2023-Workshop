@@ -18,14 +18,49 @@
   --main-color-blue-link: #3751FF;
 }
 
+.content-wrapper, 
+nav.main-header,
+nav.main-header a.nav-link,
+footer.main-footer{
+    background-color: var(--main-background);
+    color: var(--color-text-main);
+}
+
 #nk-authentification{
     background-color: var(--main-background);
     color: var(--color-text-main);
     height: 100vh;
 }
-#nk-authentification button{
+button.nk-button{
     background-color: var(--main-color-yellow);
     border-color: var(--main-color-yellow);
     color: var(--color-text-dark-silver);
     font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    padding: 5px 10px;
+}
+button.nk-button:disabled{
+    background-color: var(--color-text-secondary);
+}
+b.color{color: var(--main-color-red)}
+
+#dropzone, #dropzone input{
+    width: 100%;
+    height: 140px;
+    cursor: pointer;
+}
+#dropzone input::file-selector-button {display: none;}
+#dropzone{
+    border: 5px white dashed;
+    height: 150px;
+    padding: 5px;
+    margin: 20px 0;
+}
+#dropzone.hovered {border: 5px red dashed;}
+#dropzone>p{
+    position: relative;
+    top: -40px;
+    font-size: large;
+    text-align: center;
 }

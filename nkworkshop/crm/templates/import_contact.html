@@ -2,17 +2,38 @@
 
 {% block content %}
     <h2>Import</h2>
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" class="mb-3">
         {% csrf_token %}
-        <input type="file" name="document">
-        <button type="submit">Import contacts</button>
+        <div id="dropzone" class="" >
+            <input type="file" name="document" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+            <p>Drag & drop or <b class="color">select SCV file</b></p>
+        </div>
+        <button type="submit" class="nk-button" disabled>Import contacts</button>
     </form>
     {% if url %}
         <p>Uploaded file: <a href="{{ url }}">{{ url }}</a></p>
     {% endif %}
 
+    <h2>Export</h2>
     <form action="{% url 'download' %}" method="post">
         {% csrf_token %}
-        <button type="submit" name='mybtn2'>Export contacts</button>
-        </form>
+        <button type="submit" name='mybtn2' class="nk-button">Download all contacts</button>
+    </form>
+
+    <script>
+        const dropZone = document.querySelector('#dropzone');
+        const buttonEl = document.querySelector('button.nk-button:disabled');
+
+        dropZone.addEventListener('dragover', (event) => {
+            dropZone.classList = 'hovered'
+        });
+        dropZone.addEventListener('dragleave', (event) => {
+            dropZone.classList = ''
+        });
+        dropZone.addEventListener('drop', (event) => {
+            dropZone.classList = ''
+            const fileList = event.dataTransfer.files;
+            buttonEl.disabled = false;
+        });
+    </script>
 {% endblock %}

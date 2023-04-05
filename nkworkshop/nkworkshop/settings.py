@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #installed apps
-    'home.apps.HomeConfig',
+    'crm.apps.CrmConfig',
 ]
 
 MIDDLEWARE = [
@@ -50,10 +50,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # add BlockBackMiddleware   
+    'crm.middlewares.BlockBackMiddleware',
 ]
 
 ROOT_URLCONF = 'nkworkshop.urls'
-LOGIN_URL = 'login'
+LOGIN_URL = 'login/'
+REDIRECT_LOGIN_URL = ''
+CACHE_MIDDLEWARE_SECONDS = 0
 
 TEMPLATES = [
     {
@@ -67,6 +71,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries': {
+                'my_filters': 'crm.templatetags.my_filters',
+
+            },
         },
     },
 ]

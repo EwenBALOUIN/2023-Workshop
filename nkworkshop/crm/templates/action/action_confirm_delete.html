@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <button onclick="window.history.back()">Retour</button>
+    <h1>Delete action?</h1>
+    <p>Are you sure you want to delete "{{ action.action_type }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, delete it</button>
+    </form>
+    <a href="{% url 'action_detail' action.pk %}">No, keep it</a>
+{% endblock %}

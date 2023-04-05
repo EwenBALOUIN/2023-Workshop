@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <button onclick="window.history.back()">Retour</button>
+    <h1>Delete customer?</h1>
+    <p>Are you sure you want to delete "{{ customer.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, delete it</button>
+    </form>
+    <a href="{% url 'customer_detail' customer.pk %}">No, keep it</a>
+{% endblock %}

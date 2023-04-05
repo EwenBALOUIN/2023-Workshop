@@ -26,6 +26,15 @@ footer.main-footer{
     color: var(--color-text-main);
 }
 
+.card-custom{
+    background-color: var(--main-background);
+    color: var(--color-text-secondary);
+    border-radius: 5px;
+    border: none;
+    padding: 1em;
+    margin: 1em 0;
+}
+
 #nk-authentification{
     background-color: var(--main-background);
     color: var(--color-text-main);

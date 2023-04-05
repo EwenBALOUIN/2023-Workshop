@@ -6,7 +6,7 @@
         {% csrf_token %}
         <div id="dropzone" class="" >
             <input type="file" name="document" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-            <p>Drag & drop or <b class="color">select SCV file</b></p>
+            <p>Drag & drop or <b class="color">select CSV file</b></p>
         </div>
         <button type="submit" class="nk-button" disabled>Import contacts</button>
     </form>
@@ -23,6 +23,7 @@
     <script>
         const dropZone = document.querySelector('#dropzone');
         const buttonEl = document.querySelector('button.nk-button:disabled');
+        const inputFile = document.querySelector('input[type="file"]');
 
         dropZone.addEventListener('dragover', (event) => {
             dropZone.classList = 'hovered'
@@ -33,6 +34,10 @@
         dropZone.addEventListener('drop', (event) => {
             dropZone.classList = ''
             const fileList = event.dataTransfer.files;
+            buttonEl.disabled = false;
+        });
+        inputFile.addEventListener('change', (event) => {
+            dropZone.classList = ''
             buttonEl.disabled = false;
         });
     </script>

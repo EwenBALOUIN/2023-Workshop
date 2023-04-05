@@ -10,16 +10,16 @@ from .routes import action_route as action_route
 from .routes import company_route as company_route
 from .routes import user_route as user_route
 from .routes import message_route as message_route
-from .viewers import dashboard_view
+from .routes import dashboard_route as dashboard_route
 
 
 urlpatterns = [
-    path('', dashboard_view.dashboard, name='dashboard'),
     path('upload/', views.upload, name='upload'),
     path('download/', views.download, name='download'),
     re_path('.*login/', views.logincrm, name='login'),
     re_path('.*logout/', views.logoutcrm, name='logout'),
 
+    path('', include(dashboard_route)),
     path('', include(customer_route)),
     path('', include(lead_route)),
     path('', include(prospect_route)),

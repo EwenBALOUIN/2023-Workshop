@@ -1,5 +1,6 @@
 {% extends 'base.html' %} 
-{% load static %} 
+{% load static %}
+{% load my_filters %}
 {% block content %}
 <h1>Dashboard</h1>
 <div class="row">
@@ -21,7 +22,6 @@
     <div class="col-lg-3 col-6">
         <div class="small-box bg-success">
         <div class="inner">
-            <!-- <h3>53<sup style="font-size: 20px">%</sup></h3> -->
             <h3>{{ nb_lead }}</h3>
             <p>Lead</p>
         </div>
@@ -64,149 +64,51 @@
 
 <div class="row">
     <div class="col-lg-6">
+        <div class="card card-primary">
         <div class="card-header ui-sortable-handle" style="cursor: move">
         <h3 class="card-title">
             <i class="ion ion-clipboard mr-1"></i>
             To Do List
         </h3>
-        <div class="card-tools">
-            <ul class="pagination pagination-sm">
-            <li class="page-item"><a href="#" class="page-link">«</a></li>
-            <li class="page-item"><a href="#" class="page-link">1</a></li>
-            <li class="page-item"><a href="#" class="page-link">2</a></li>
-            <li class="page-item"><a href="#" class="page-link">3</a></li>
-            <li class="page-item"><a href="#" class="page-link">»</a></li>
-            </ul>
-        </div>
         </div>
 
-        <div class="card-body">
-        <ul class="todo-list ui-sortable" data-widget="todo-list">
-            <li>
-            <span class="handle ui-sortable-handle">
-                <i class="fas fa-ellipsis-v"></i>
-                <i class="fas fa-ellipsis-v"></i>
-            </span>
+        <div class="card-body" style="height: 350px;">
+        <ul class="todo-list ui-sortable" data-widget="todo-list" style="overflow: auto; max-height: 325px;">
+            {% for action in actions %}
+                <li class="{% if action.done_at %}done{% endif %}">
 
-            <div class="icheck-primary d-inline ml-2">
-                <input type="checkbox" value="" name="todo1" id="todoCheck1" />
-                <label for="todoCheck1"></label>
-            </div>
+                <span class="text">{{ action.action_type}} : {{ action.description }} pour {{ action.customer }}</span>
 
-            <span class="text">Design a nice theme</span>
+                <small class="badge badge-success"
+                    ><i class="far fa-clock"></i> {{ action|calculate_remaining_time }}</small
+                >
 
-            <small class="badge badge-danger"
-                ><i class="far fa-clock"></i> 2 mins</small
-            >
-
-            <div class="tools">
-                <i class="fas fa-edit"></i>
-                <i class="fas fa-trash-o"></i>
-            </div>
-            </li>
-            <li class="done">
-            <span class="handle ui-sortable-handle">
-                <i class="fas fa-ellipsis-v"></i>
-                <i class="fas fa-ellipsis-v"></i>
-            </span>
-            <div class="icheck-primary d-inline ml-2">
-                <input
-                type="checkbox"
-                value=""
-                name="todo2"
-                id="todoCheck2"
-                checked=""
-                />
-                <label for="todoCheck2"></label>
-            </div>
-            <span class="text">Make the theme responsive</span>
-            <small class="badge badge-info"
-                ><i class="far fa-clock"></i> 4 hours</small
-            >
-            <div class="tools">
-                <i class="fas fa-edit"></i>
-                <i class="fas fa-trash-o"></i>
-            </div>
-            </li>
-            <li>
-            <span class="handle ui-sortable-handle">
-                <i class="fas fa-ellipsis-v"></i>
-                <i class="fas fa-ellipsis-v"></i>
-            </span>
-            <div class="icheck-primary d-inline ml-2">
-                <input type="checkbox" value="" name="todo3" id="todoCheck3" />
-                <label for="todoCheck3"></label>
-            </div>
-            <span class="text">Let theme shine like a star</span>
-            <small class="badge badge-warning"
-                ><i class="far fa-clock"></i> 1 day</small
-            >
-            <div class="tools">
-                <i class="fas fa-edit"></i>
-                <i class="fas fa-trash-o"></i>
-            </div>
-            </li>
-            <li>
-            <span class="handle ui-sortable-handle">
-                <i class="fas fa-ellipsis-v"></i>
-                <i class="fas fa-ellipsis-v"></i>
-            </span>
-            <div class="icheck-primary d-inline ml-2">
-                <input type="checkbox" value="" name="todo4" id="todoCheck4" />
-                <label for="todoCheck4"></label>
-            </div>
-            <span class="text">Let theme shine like a star</span>
-            <small class="badge badge-success"
-                ><i class="far fa-clock"></i> 3 days</small
-            >
-            <div class="tools">
-                <i class="fas fa-edit"></i>
-                <i class="fas fa-trash-o"></i>
-            </div>
-            </li>
-            <li>
-            <span class="handle ui-sortable-handle">
-                <i class="fas fa-ellipsis-v"></i>
-                <i class="fas fa-ellipsis-v"></i>
-            </span>
-            <div class="icheck-primary d-inline ml-2">
-                <input type="checkbox" value="" name="todo5" id="todoCheck5" />
-                <label for="todoCheck5"></label>
-            </div>
-            <span class="text">Check your messages and notifications</span>
-            <small class="badge badge-primary"
-                ><i class="far fa-clock"></i> 1 week</small
-            >
-            <div class="tools">
-                <i class="fas fa-edit"></i>
-                <i class="fas fa-trash-o"></i>
-            </div>
-            </li>
-            <li>
-            <span class="handle ui-sortable-handle">
-                <i class="fas fa-ellipsis-v"></i>
-                <i class="fas fa-ellipsis-v"></i>
-            </span>
-            <div class="icheck-primary d-inline ml-2">
-                <input type="checkbox" value="" name="todo6" id="todoCheck6" />
-                <label for="todoCheck6"></label>
-            </div>
-            <span class="text">Let theme shine like a star</span>
-            <small class="badge badge-secondary"
-                ><i class="far fa-clock"></i> 1 month</small
-            >
-            <div class="tools">
-                <i class="fas fa-edit"></i>
-                <i class="fas fa-trash-o"></i>
-            </div>
-            </li>
+                <div class="tools">
+                    <a href="{% url 'action_detail' action.pk %}">
+                        <i class="fas fa-eye"></i>
+                    </a>
+                    <a href="{% url 'valid_action' action.pk %}">
+                        <i class="fas fa-check" style="color: greenyellow"></i>
+                    </a>    
+                    <a href="{% url 'close_action' action.pk %}">
+                        <i class="fas fa-times" style="color:crimson"></i>
+                    </a>
+                    <a href="{% url 'delete_action' action.pk %}">
+                        <i class="fas fa-trash" style="color: red"></i>
+                    </a>
+                </div>
+                </li>
+            {% endfor %}
         </ul>
         </div>
 
         <div class="card-footer clearfix">
+        <a href="{% url 'action_create' %}">
         <button type="button" class="btn btn-primary float-right">
-            <i class="fas fa-plus"></i> Add item
+            <i class="fas fa-plus"></i> Ajouter une action
         </button>
+        </a>
+        </div>
         </div>
     </div>
     <div class="col-lg-6">
@@ -302,8 +204,5 @@
 
 {% endblock %}
 {% block javascripts %}
-
-<!-- Ajouter du code JavaScript dans la balise script -->
-
 {% endblock %}
 

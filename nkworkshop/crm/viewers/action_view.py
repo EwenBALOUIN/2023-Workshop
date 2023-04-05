@@ -17,6 +17,7 @@ def action_detail(request, pk):
     return render(request, 'action/action_detail.html', {'action': action, 'messages': messages})
 
 def action_create(request):
+    customer = None
     if request.GET.get('customer_id'):
         customer_id = request.GET.get('customer_id', None)
         customer = Customer.objects.get(pk=customer_id)
@@ -27,7 +28,10 @@ def action_create(request):
             form.save()
             return redirect('action_list')
     else:
-        form = ActionForm(initial={'customer': customer.pk})
+        if customer:
+            form = ActionForm(initial={'customer': customer.pk})
+        else:
+            form = ActionForm()
     return render(request, 'action/action_form.html', {'form': form})
 
 def action_edit(request, pk):

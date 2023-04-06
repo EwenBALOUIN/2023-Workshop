@@ -98,6 +98,31 @@ Un administrateur pourra :
 
 Ce paragraphe détaille les fonctionnalités principales du site. 
 
+![User story : Authentification utilisateur](/docs-assets/user-stories/user_stories_page-0001.jpg "User story : Authentification utilisateur")
+
+![User story : Déconnexion utilisateur](/docs-assets/user-stories/user_stories_page-0002.jpg "User story : Déconnexion utilisateur")
+
+![User story : Créer un contact - 1](/docs-assets/user-stories/user_stories_page-0003.jpg "User story : Créer un contact - 1")
+![User story : Créer un contact - 2](/docs-assets/user-stories/user_stories_page-0004.jpg "User story : Créer un contact - 2")
+
+![User story : Modifier un contact](/docs-assets/user-stories/user_stories_page-0005.jpg "User story : Modifier un contact")
+
+![User story : Supprimer un contact](/docs-assets/user-stories/user_stories_page-0006.jpg "User story : Supprimer un contact")
+
+![User story : Créer une action - 1](/docs-assets/user-stories/user_stories_page-0007.jpg "User story : Créer une action - 1")
+![User story : Créer une action - 2](/docs-assets/user-stories/user_stories_page-0008.jpg "User story : Créer une action - 2")
+
+![User story : Recevoir une notification](/docs-assets/user-stories/user_stories_page-0009.jpg "User story : Recevoir une notification")
+
+![User story : Terminer une action - 1](/docs-assets/user-stories/user_stories_page-0010.jpg "User story : Terminer une action - 1")
+![User story : Terminer une action - 2](/docs-assets/user-stories/user_stories_page-0011.jpg "User story : Terminer une action - 2")
+
+![User story : Annuler une action](/docs-assets/user-stories/user_stories_page-0012.jpg "User story : Annuler une action")
+
+![User story : Importer un contact](/docs-assets/user-stories/user_stories_page-0013.jpg "User story : Importer un contact")
+
+![User story : Exporter un contact](/docs-assets/user-stories/user_stories_page-0014.jpg "User story : Exporter un contact")
+
 #### <ins> Navigation du site </ins>
 
 La navigation au sein du site est définie de manière à ce qu'un utilisateur soit obligé de se connecter pour accéder au reste des fonctionnalités. Une fois connecté, il est automatiquement redirigé vers le dashboard. Grâce au menu, il a constamment accès aux autres fonctionnalités.  

@@ -24,11 +24,15 @@
         2. [Fonctionnalités principales](#fonctionnalités-principales)
         3. [Navigation du site](#navigation-du-site)
     2. [Maquettes](#maquettes)
+    3. [Utilisation du CRM](#utilisation-du-crm)
 3. [Annexes](#annexes)
     1. [Sujet du projet](#sujet-du-projet)
     2. [présentation de la notation UML](#présentation-de-la-notation-uml)
     3. [Bibliographie technique](#bibliographie-technique)
 
+<br>
+
+---
 ## <ins> Présentation </ins>
 
 ### <ins> Introduction </ins>
@@ -55,6 +59,9 @@ Ce paragraphe fait état du glossaire afin que tous les termes utilisés dans le
 |---|---|
 |[REF 1]|Sujet du projet (fourni en annexe)|
 
+<br>
+ 
+---
 ## <ins> Projet CRM : Workshops 2023 </ins>
 
 ### <ins> Besoins fonctionnels </ins>
@@ -144,6 +151,33 @@ Voici ci-dessous l'ensemble des maquettes réalisées avec l'outil Figma par l'�
 ![Maquette page de users](/docs-assets/maquettes/users.jpg "Maquette page de users")
 ![Maquette page de users 2](/docs-assets/maquettes/users-2.jpg "Maquette page de users 2")
 
+### <ins> Utilisation du CRM </ins>
+
+Afin d'utiliser le projet CRM, n'oubliez pas dans un premier temps de suivre les instructions présentes dans le fichier [README](/README.md).
+
+#### <ins> Créer un contact </ins>
+
+Pour créer un contact, rendez-vous sur la page "Customers" puis cliquez sur le bouton "Create new Customer". Remplissez les champs et validez : votre nouveau contact est créé, et disponible dans la page associée au statut que vous avez défini.
+
+#### <ins> Importer un contact </ins>
+
+Pour importer un contact, rendez-vous sur la page "Import/Export". 
+Choisissez le fichier au format csv de votre choix.  
+**/!\ Attention  : le fichier doit obligatoirement contenir, dans l'ordre, les champs "first_name", "name", "email", "address".**  
+Validez votre import : votre contact a été importé et est disponible dans la page "Customers".
+
+
+#### <ins> Exporter les contacts </ins>
+
+Pour exporter vos contacts, rendez-vous sur la page "Import/Export" et cliquez sur le bouton "Download all contacts". Les contacts ont tous été exportés au format csv.
+
+
+#### <ins> Utilisation de la todo-list </ins>
+
+
+<br>
+ 
+---
 ## <ins> Annexes </ins>
 
 ### <ins> Sujet du projet </ins>

@@ -26,7 +26,18 @@ def action_create(request):
         form = ActionForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('action_list')
+            if request.GET.get('from'):
+                provider = request.GET.get('from', None)
+                if provider == 'dashboard':
+                    return redirect('dashboard')
+                elif provider == 'customer':
+                    return redirect('customer_detail', pk=customer.pk)
+                elif provider == 'lead':
+                    return redirect('lead_detail', pk=customer.pk)
+                elif provider == 'prospect':
+                    return redirect('prospect_detail', pk=customer.pk)
+                else:
+                    return redirect('action_list')
     else:
         if customer:
             form = ActionForm(initial={'customer': customer.pk})

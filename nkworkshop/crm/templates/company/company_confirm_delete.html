@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <button onclick="window.history.back()">Retour</button>
     <h1>Delete company?</h1>
     <p>Are you sure you want to delete "{{ company.name }}"?</p>
     <form method="post">

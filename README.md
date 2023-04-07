@@ -17,6 +17,8 @@
 # Team-3-Workshop : NK CRM
 ### Authors : Anthony LEGRAND - Ewen BALOUIN - Thibault LEDANOIS - Manon JULIEN-KUENTZ
 
+##  🎉 [Site Landing-page](https://thibaultll.github.io/Team-3-Workshop/) 🎉
+
 ## Contexte 👋
 Le monde de l’entrepreneuriat est de plus en plus plébiscité par les Français. Dans ce cadre, chaque nouvel entrepreneur doit réaliser du chiffre d'affaires et utiliser ou développer des compétences commerciales afin de vendre ses produits ou services.
 
@@ -45,7 +47,7 @@ Lancer le conteneur
 docker-compose up
 ```
 
-Accèder au conteneur
+Accéder au conteneur
 ```sh
 docker exec -it nkworkshop-web-1 sh
 ```
@@ -62,7 +64,7 @@ python manage.py createsuperuser
 ```
 
 
-### Vous pouvez maintenant accèder à l'application sur l'URL : [http://localhost/:8000](http//localhost:8000) 🚀🚀🚀
+### Vous pouvez maintenant accèder à l'application sur l'URL : [http://localhost:8000](http://localhost:8000) 🚀🚀🚀
 
 ---
 ## Documention fonctionnelle :

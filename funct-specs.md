@@ -163,7 +163,7 @@ Pour créer un contact, rendez-vous sur la page "Customers" puis cliquez sur le 
 
 Pour importer un contact, rendez-vous sur la page "Import/Export". 
 Choisissez le fichier au format csv de votre choix.  
-**/!\ Attention  : le fichier doit obligatoirement contenir, dans l'ordre, les champs "first_name", "name", "email", "address".**  
+`⚠️ Attention  : le fichier doit obligatoirement contenir, dans l'ordre, les champs "first_name", "name", "email", "address".`
 Validez votre import : votre contact a été importé et est disponible dans la page "Customers".
 
 
@@ -173,7 +173,19 @@ Pour exporter vos contacts, rendez-vous sur la page "Import/Export" et cliquez s
 
 
 #### <ins> Utilisation de la todo-list </ins>
+La todo list permet de lister les actions ainsi que leurs échéances sous forme de badge. Elles sont triées de la sorte que les actions en cours soient toujours en haut de la liste. Et que les actions terminées sont à la fin de cette liste.
 
+<img src="docs-assets/images/todo.PNG" alt="todo list element">
+
+Il existe quatres boutons pour gérer une action :
+
+- le logo `oeil` permet de voir les détails de l'action
+
+- le logo `valider` permet de signifier que l'action a été réalisée avec succès. on peut donc passer le contact du statut `lead` à `prospect` et s'il était `prospect` à `client` seulement, si cette action était une action de type `vente`. 
+
+- le logo `refuser` signifie que l'action a été un échec donc si le contact était `client`, il passe au statut `aucun`. S'il était `lead` &rarr; `lead mort` et s'il était `prospect` &rarr; `prospect mort`.
+
+- le logo `poubelle` permet de supprimer l'action
 
 <br>
  

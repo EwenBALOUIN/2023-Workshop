@@ -581,11 +581,11 @@ filter: drop-shadow(0px 7px 4px rgba(0,0,0,.2));
 }
 
 .article-pre__img--third{
-  background-image: url(./assets/customer-details.png);  
+  background-image: url(./assets/import-export.png);  
 }
 
 .article-pre__img--fourth{
-  background-image: url(./assets/import-export.png);  
+  background-image: url(./assets/customer-details.png);  
 }
 
 .article-pre:hover .article-pre__img {
